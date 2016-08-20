@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`scheduler-el`
+Simple scheduler element using DayPilot library
+
+@demo demo/index.html 
+-->
+
+<dom-module id="scheduler-el">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'scheduler-el',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'scheduler-el',
+        },
+      },
+
+    });
+  </script>
+</dom-module>
