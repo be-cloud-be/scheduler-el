@@ -1,13 +1,13 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="stylesheet" href="scheduler_8.css">
 
 <!--
 `scheduler-el`
 Simple scheduler element using DayPilot library
-
 @demo demo/index.html 
 -->
 
-<script src="daypilot-all.min.js"/>
+<script src='daypilot-all.min.js'></script>
 
 <dom-module id="scheduler-el">
   <template>
@@ -16,28 +16,28 @@ Simple scheduler element using DayPilot library
         display: block;
       }
     </style>
+    <h2>Hello There [[prop1]]</h2>
     <div id="dp"></div>
   </template>
 
   <script>
     Polymer({
-
       is: 'scheduler-el',
-
       properties: {
         prop1: {
           type: String,
           value: 'scheduler-el',
         },
       },
-
-      ready: function() {
-        // `ready` is called after all elements have been configured, but
-        // propagates bottom-up. This element's children are ready, but parents
-        // are not.
+      
+     attached: function() {
+        // `attached` fires once the element and its parents have been inserted
+        // into a document.
         //
-        // This is the point where you should make modifications to the DOM (when
-        // necessary), or kick off any processes the element wants to perform.
+        // This is a good place to perform any work related to your element's
+        // visual state or active behavior (measuring sizes, beginning animations,
+        // loading resources, etc).
+        
         var dp = new DayPilot.Scheduler("dp");
 
         // behavior and appearance
@@ -142,7 +142,6 @@ Simple scheduler element using DayPilot library
         dp.scrollTo("2013-03-25");
         
       },
-
     });
   </script>
 </dom-module>
