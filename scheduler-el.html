@@ -1,13 +1,13 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="stylesheet" href="scheduler_8.css">
+<script src="../jquery/dist/jquery.slim.min.js"></script>
+<script src='daypilot-all.min.js'></script>
 
 <!--
 `scheduler-el`
 Simple scheduler element using DayPilot library
 @demo demo/index.html 
 -->
-
-<script src='daypilot-all.min.js'></script>
 
 <dom-module id="scheduler-el">
   <template>
@@ -38,29 +38,29 @@ Simple scheduler element using DayPilot library
         // visual state or active behavior (measuring sizes, beginning animations,
         // loading resources, etc).
         
-        var dp = new DayPilot.Scheduler("dp");
+        var dp = $(this).find("#dp").daypilotScheduler({
 
         // behavior and appearance
-        dp.theme = "scheduler_8";
+        theme : "scheduler_8",
     
         // view
-        dp.startDate = new DayPilot.Date("2013-01-01");  // or just dp.startDate = "2013-03-25";
-        dp.cellGroupBy = "Month";
-        dp.days = 365;
-        dp.cellDuration = 1440; // one day
+        startDate : new DayPilot.Date("2013-01-01"),  // or just startDate : "2013-03-25";
+        cellGroupBy : "Month",
+        days : 365,
+        cellDuration : 1440, // one day
         
-        dp.moveBy = 'Full';
+        moveBy : 'Full',
     
         // bubble, sync loading
         // see also DayPilot.Event.data.staticBubbleHTML property
-        dp.bubble = new DayPilot.Bubble({
+        bubble : new DayPilot.Bubble({
             onLoad: function(args) {
                 var ev = args.source;
                 args.html = "testing bubble for: " + ev.text();
             }
-        });
+        }),
     
-        dp.contextMenu = new DayPilot.Menu({items: [
+        contextMenu : new DayPilot.Menu({items: [
     	    	{text:"Show event ID", onclick: function() {alert("Event value: " + this.source.value());} },
     	    	{text:"Show event text", onclick: function() {alert("Event text: " + this.source.text());} },
     	    	{text:"Show event start", onclick: function() {alert("Event start: " + this.source.start().toStringSortable());} },
@@ -71,11 +71,11 @@ Simple scheduler element using DayPilot library
                             {text:"Show event text", onclick: function() {alert("Event text: " + this.source.text());} }
                         ]
                     }
-    	    ]});
+    	    ]}),
     
-        dp.treeEnabled = true;
-        dp.rowHeaderWidth = 200;
-        dp.resources = [
+        treeEnabled : true,
+        rowHeaderWidth : 200,
+        resources : [
                      { name: "Room A", id: "A", expanded: true, children:[
                              { name : "Room A.1", id : "A.1" },
                              { name : "Room A.2", id : "A.2" }
@@ -83,7 +83,8 @@ Simple scheduler element using DayPilot library
                      },
                      { name: "Room B", id: "B" },
                      { name: "Room C", id: "C" }
-                    ];
+                    ],
+        });
     
         // generate and load events
         for (var i = 0; i < 10; i++) {
@@ -142,6 +143,7 @@ Simple scheduler element using DayPilot library
         dp.scrollTo("2013-03-25");
         
       },
+      
     });
   </script>
 </dom-module>
